@@ -1,6 +1,6 @@
 package cn.mystic.service;
 
-import cn.mystic.model.Person;
+import cn.mystic.domain.Person;
 import java.util.List;
 
 /**

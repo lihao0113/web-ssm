@@ -1,4 +1,4 @@
-package cn.mystic.model;
+package cn.mystic.domain;
 
 import lombok.Data;
 

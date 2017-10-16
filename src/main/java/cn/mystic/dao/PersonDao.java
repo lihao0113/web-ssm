@@ -1,6 +1,6 @@
 package cn.mystic.dao;
 
-import cn.mystic.model.Person;
+import cn.mystic.domain.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

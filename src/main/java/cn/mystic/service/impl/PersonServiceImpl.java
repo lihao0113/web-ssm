@@ -1,7 +1,7 @@
 package cn.mystic.service.impl;
 
 import cn.mystic.dao.PersonDao;
-import cn.mystic.model.Person;
+import cn.mystic.domain.Person;
 import cn.mystic.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
