@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(value = "/person")
 public class PersonController {
 
-    @Resource
+    @Autowired
     private PersonService personService;
 
     /**

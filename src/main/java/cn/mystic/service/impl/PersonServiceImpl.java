@@ -3,6 +3,7 @@ package cn.mystic.service.impl;
 import cn.mystic.dao.PersonDao;
 import cn.mystic.domain.Person;
 import cn.mystic.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService{
 
-    @Resource
+    @Autowired
     private PersonDao personDao;
 
     public List<Person> listAll() {
