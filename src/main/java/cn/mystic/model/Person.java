@@ -15,4 +15,6 @@ public class Person {
     private Integer age; // 年龄
 
     private String address; // 地址
+
+    public Person(){}
 }

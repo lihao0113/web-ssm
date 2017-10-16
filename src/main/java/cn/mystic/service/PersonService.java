@@ -8,9 +8,9 @@ import java.util.List;
  */
 public interface PersonService {
     public abstract List<Person> listAll();
-    public abstract Person findById(Integer userid);
+    public abstract Person findById(Long id);
 
     public abstract boolean add(Person model) throws Exception;
-    public abstract boolean delete(Integer userid) throws Exception;
+    public abstract boolean delete(Long id) throws Exception;
     public abstract boolean update(Person model) throws Exception;
 }

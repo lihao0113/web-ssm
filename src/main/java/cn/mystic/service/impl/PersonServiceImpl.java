@@ -1,7 +1,9 @@
 package cn.mystic.service.impl;
 
+import cn.mystic.dao.PersonDao;
 import cn.mystic.model.Person;
 import cn.mystic.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,23 +13,27 @@ import java.util.List;
  */
 @Service
 public class PersonServiceImpl implements PersonService{
+
+    @Autowired
+    private PersonDao personDao;
+
     public List<Person> listAll() {
-        return null;
+        return personDao.listAll();
     }
 
-    public Person findById(Integer userid) {
-        return null;
+    public Person findById(Long id) {
+        return personDao.findById(id);
     }
 
     public boolean add(Person model) throws Exception {
-        return false;
+        return personDao.add(model);
     }
 
-    public boolean delete(Integer userid) throws Exception {
-        return false;
+    public boolean delete(Long id) throws Exception {
+        return personDao.delete(id);
     }
 
     public boolean update(Person model) throws Exception {
-        return false;
+        return personDao.update(model);
     }
 }
