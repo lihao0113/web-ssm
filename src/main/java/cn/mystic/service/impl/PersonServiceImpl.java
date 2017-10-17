@@ -2,11 +2,14 @@ package cn.mystic.service.impl;
 
 import cn.mystic.dao.PersonDao;
 import cn.mystic.domain.Person;
+import cn.mystic.dto.message.Message;
+import cn.mystic.dto.message.MessageType;
 import cn.mystic.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,23 +21,48 @@ public class PersonServiceImpl implements PersonService{
     @Autowired
     private PersonDao personDao;
 
-    public List<Person> listAll() {
-        return personDao.listAll();
+    /**
+     * 添加人员
+     * @param model
+     * @return
+     */
+    public ResponseEntity<Message> add(Person model) {
+        return null;
     }
 
-    public Person findById(Long id) {
-        return personDao.findById(id);
+    /**
+     * 删除人员
+     * @param id
+     * @return
+     */
+    public ResponseEntity<Message> delete(Long id) {
+        return null;
     }
 
-    public boolean add(Person model) throws Exception {
-        return personDao.add(model);
+    /**
+     * 修改人员
+     * @param model
+     * @return
+     */
+    public ResponseEntity<Message> update(Person model) {
+        return null;
     }
 
-    public boolean delete(Long id) throws Exception {
-        return personDao.delete(id);
+    /**
+     * 查询所有
+     * @return
+     */
+    public ResponseEntity<Message> findAll(){
+        List<Person> list = personDao.listAll();
+        return new ResponseEntity<Message>(new Message(MessageType.MSG_TYPE_SUCCESS, list), HttpStatus.OK);
     }
 
-    public boolean update(Person model) throws Exception {
-        return personDao.update(model);
+    /**
+     * 查询一条记录
+     * @param id
+     * @return
+     */
+    public ResponseEntity<Message> findById(Long id) {
+        return null;
     }
 }
