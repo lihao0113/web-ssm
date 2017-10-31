@@ -3,6 +3,7 @@ package cn.mystic.service.impl;
 import cn.mystic.dao.PersonDao;
 import cn.mystic.domain.Person;
 import cn.mystic.dto.message.Message;
+import cn.mystic.dto.message.MessageInfo;
 import cn.mystic.dto.message.MessageType;
 import cn.mystic.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class PersonServiceImpl implements PersonService{
      * @param model
      * @return
      */
-    public ResponseEntity<Message> add(Person model) {
-        return null;
+    public Boolean add(Person model) {
+        Boolean isSuccess = personDao.add(model);
+        return isSuccess;
     }
 
     /**
@@ -35,8 +37,9 @@ public class PersonServiceImpl implements PersonService{
      * @param id
      * @return
      */
-    public ResponseEntity<Message> delete(Long id) {
-        return null;
+    public Boolean delete(Long id) {
+        Boolean isSuccess = personDao.delete(id);
+        return isSuccess;
     }
 
     /**
@@ -44,17 +47,18 @@ public class PersonServiceImpl implements PersonService{
      * @param model
      * @return
      */
-    public ResponseEntity<Message> update(Person model) {
-        return null;
+    public Boolean update(Person model) {
+        Boolean isSuccess = personDao.update(model);
+        return isSuccess;
     }
 
     /**
      * 查询所有
      * @return
      */
-    public ResponseEntity<Message> findAll(){
+    public List<Person> findAll(){
         List<Person> list = personDao.listAll();
-        return new ResponseEntity<Message>(new Message(MessageType.MSG_TYPE_SUCCESS, list), HttpStatus.OK);
+        return list;
     }
 
     /**
@@ -62,7 +66,8 @@ public class PersonServiceImpl implements PersonService{
      * @param id
      * @return
      */
-    public ResponseEntity<Message> findById(Long id) {
-        return null;
+    public Person findById(Long id) {
+        Person person = personDao.findById(id);
+        return person;
     }
 }

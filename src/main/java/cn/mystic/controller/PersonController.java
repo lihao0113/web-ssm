@@ -5,15 +5,17 @@ import cn.mystic.dto.message.Message;
 import cn.mystic.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 /**
  * Created by lihao on 2017/10/16.
  */
-@RestController
+@Controller
 @RequestMapping(value = "/person")
 public class PersonController {
 
@@ -22,21 +24,28 @@ public class PersonController {
 
     /**
      * 返回所有person
-     * @return List<Person>
+     * @return
      */
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public ResponseEntity<Message> findAll() {
-        return personService.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView findAll() {
+        List<Person> list =  personService.findAll();
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("list", list);
+        mav.setViewName("showPerson");
+        return mav;
     }
 
     /**
      * 返回一条数据
      * @param id 人员id
-     * @return Person
+     * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Message> findById(@PathVariable Long id) {
-        return personService.findById(id);
+    public ModelAndView findById(@PathVariable Long id) {
+        Person person = personService.findById(id);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("person", person);
+        return mav;
     }
 
     /**
@@ -47,7 +56,8 @@ public class PersonController {
      */
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Message> add(@RequestBody Person model) throws Exception {
+    @ResponseBody
+    public Boolean add( Person model){
         return personService.add(model);
     }
 
@@ -59,7 +69,7 @@ public class PersonController {
      */
     @Transactional
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Message> delete(@PathVariable Long id) throws Exception {
+    public Boolean delete(@PathVariable Long id){
         return personService.delete(id);
     }
 
@@ -71,7 +81,8 @@ public class PersonController {
      */
     @Transactional
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Message> update(@RequestBody Person model) throws Exception {
+    @ResponseBody
+    public Boolean update(Person model){
         return personService.update(model);
     }
 }
