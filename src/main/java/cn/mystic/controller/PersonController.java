@@ -41,11 +41,9 @@ public class PersonController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView findById(@PathVariable Long id) {
+    public Person findById(@PathVariable Long id) {
         Person person = personService.findById(id);
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("person", person);
-        return mav;
+        return person;
     }
 
     /**

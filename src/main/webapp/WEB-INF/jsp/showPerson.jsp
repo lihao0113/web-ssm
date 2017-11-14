@@ -11,25 +11,37 @@
 <html>
 <head>
     <title>人员信息列表</title>
-    <script src="../js/jquery-1.11.0.js"></script>
 </head>
 <body>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<script type= "text/javascript" src= "<%=basePath%>js/jquery-1.11.0.js"></script >
 <script>
-    var personData;
-    $.ajax({
-        url:"http://localhost:8080/web-ssm/person",    //请求的url地址
-        dataType:"json",   //返回格式为json
-        async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+    function init() {
+        $.ajax({
+            url:"person/1",   //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 //        data:{"id":"value"},    //参数值
-        type:"GET",   //请求方式
-        success:function(req){
-            //请求成功时处理
-            personData = req;
-        },
-        error:function(){
-            //请求出错处理
-        }
-    });
+            type:"GET",   //请求方式
+            success:function(req){
+                //请求成功时处理
+                var personData = req;
+                console.log(personData);
+            },
+            error:function(){
+                //请求出错处理
+                console.log("请求错误。")
+            }
+        });
+    }
+
+    init();
+
 </script>
     <div id="table1">
         <table>
