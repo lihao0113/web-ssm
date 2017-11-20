@@ -19,48 +19,47 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-<script type= "text/javascript" src= "<%=basePath%>js/jquery-1.11.0.js"></script >
+<script type="text/javascript" src="<%=basePath%>js/jquery-1.11.0.js"></script>
 <script>
-    function init() {
+    function del(id) {
         $.ajax({
-            url:"person/1",   //请求的url地址
-            dataType:"json",   //返回格式为json
-            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-//        data:{"id":"value"},    //参数值
-            type:"GET",   //请求方式
-            success:function(req){
-                //请求成功时处理
-                var personData = req;
-                console.log(personData);
+            type: "DELETE",
+            url: "<%=basePath%>person/1",
+//            data: {id: studentid},
+            dataType: "json",
+            success: function (data) {
+                var flag = data;
+                console.log(flag);
             },
-            error:function(){
-                //请求出错处理
-                console.log("请求错误。")
+            erroe: function (err) {
+                alert("请求错误！")
             }
         });
     }
 
-    init();
-
 </script>
-    <div id="table1">
-        <table>
+<div id="table1">
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>年龄</th>
+            <th>住址</th>
+            <th>操作</th>
+        </tr>
+        <c:forEach var="person" items="${list}">
             <tr>
-                <th>编号</th>
-                <th>用户名</th>
-                <th>年龄</th>
-                <th>住址</th>
-                <th>操作</th>
+                <td>${person.id}</td>
+                <td>${person.username}</td>
+                <td>${person.age}</td>
+                <td>${person.address}</td>
+                <td>
+                    <button onclick="update(${person.id})">修改</button>
+                    <button onclick="del(${person.id})">删除</button>
+                </td>
             </tr>
-            <c:forEach var="person" items="${list}">
-               <tr>
-                   <td>${person.id}</td>
-                   <td>${person.username}</td>
-                   <td>${person.age}</td>
-                   <td>${person.address}</td>
-               </tr>
-            </c:forEach>
-        </table>
-    </div>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>

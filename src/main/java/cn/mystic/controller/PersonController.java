@@ -52,7 +52,6 @@ public class PersonController {
      * @return
      * @throws Exception
      */
-    @Transactional
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public Boolean add( Person model){
@@ -65,7 +64,6 @@ public class PersonController {
      * @return
      * @throws Exception
      */
-    @Transactional
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Boolean delete(@PathVariable Long id){
         return personService.delete(id);
@@ -77,7 +75,6 @@ public class PersonController {
      * @return
      * @throws Exception
      */
-    @Transactional
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     public Boolean update(Person model){
